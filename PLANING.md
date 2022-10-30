@@ -18,6 +18,7 @@ Group ID : group-1
   * Start Date : 31/10/2022
   * End Date : 06/11/2022
   * Days : 7
+---
 ### Tasks Details
 Task ID : task-1
   * Important tips :
@@ -28,3 +29,4 @@ Task ID : task-1
     1. Functional needs should be finished by 31/10/2022 night, done by Mehdi and Mohammad.
     2. Non functional needs are done by Mohammad, at the same time the project description is done by Mehdi, both should be finished by 01/11/2022 night.
     3. Management rules should be finished by 02/11/2022 night, done by Mehdi and Chlouchi.
+---
