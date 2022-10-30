@@ -12,17 +12,17 @@ Task Group | Task ID | Element | Description | Start Date | End Date | N° Of Da
 **group-1** | **task-2** | Conception | Use case and class diagrams | 04/11/2022 | 06/11/2022 | 3 | `Not Started`
 **group-1** | **task-3** | Data Collection | Gathering, cleaning and formatting data about hotels and their comments | 31/10/2022 | 06/11/2022 | 7 | `Not Started`
 ## Current Task Group Details
-### Task Group Details
-**Group ID : group-1**
+### Details
+Group ID : group-1
   * Description : UML modeling and data collection.
   * Start Date : 31/10/2022
   * End Date : 06/11/2022
   * Days : 7
 ### Tasks Details
-**Task ID : task-1**
+Task ID : task-1
   * Important tips :
     1. Use the current UML diagrams for help, but think about errors that may be present or missing ideas.
-    2. **COMMUNICATE A LOT** with the team, because this task needs carefull thinking and contribution.
+    2. **Communicate a lot** with the team, because this task needs carefull thinking and contribution.
     3. Every micro task has exactly **1 day** to be done (e.g. functional needs should be done in 1 day...), then at the end of the same day an official meeting is done to correct and officially complete the task.
   * Task work :
     1. Functional needs should be finished by 31/10/2022 night, done by Mehdi and Mohammad.
