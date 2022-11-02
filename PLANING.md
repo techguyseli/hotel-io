@@ -24,5 +24,5 @@ Group ID : group-1
 Task ID : task-2
   * Important tip : **Communicate a lot** with the team, because this task needs carefull thinking and contribution.
   * Task work :
-    1. [04/11/2022] :: Use case diagram done by Mehdi and Mohammad, meeting at 21:00.
-    2. [05/11/2022 - 06/11/2022] :: Class diagram done by Mehdi and Mohammad, meeting at 06/11/2022 20:00.
+    * [04/11/2022] :: Use case diagram done by Mehdi and Mohammad, meeting at 21:00.
+    * [05/11/2022 - 06/11/2022] :: Class diagram done by Mehdi and Mohammad, meeting at 06/11/2022 20:00.
