@@ -15,14 +15,14 @@ hotel_id,name,price,city
 14,Hôtel Marrakech Le Semiramis,421,Marrakesh
 15,Wazo Hôtel,642,Marrakesh
 16,Palm Plaza Hôtel & Spa,1203,Marrakesh
-17,Zephyr Marrakech - Hôtel, Centre de Vacances, Resort & SPA,462,Marrakesh
+17,Zephyr Marrakech - Hôtel Centre de Vacances Resort & SPA,462,Marrakesh
 18,Hôtel Atlas Asni,None,Marrakesh
 19,Kenzi Menara Palace,1348,Marrakesh
 20,Kenzi Rose Garden,None,Marrakesh
 21,Grand Mogador Agdal,822,Marrakesh
 22,Hôtel El Andalous Lounges & Spa,663,Marrakesh
 23,Four Seasons Resort Marrakech,22990,Marrakesh
-24,Radisson Blu Hotel, Marrakech Carre Eden,1986,Marrakesh
+24,Radisson Blu Hotel Marrakech Carre Eden,1986,Marrakesh
 25,Hotel Riu Tikida Garden,None,Marrakesh
 26,Hotel Les Idrissides,None,Marrakesh
 27,Le Méridien N'Fis,1271,Marrakesh
@@ -50,7 +50,7 @@ hotel_id,name,price,city
 49,Be Live Experience Marrakech Palmeraie,1208,Marrakesh
 50,Hôtel Meriem,460,Marrakesh
 51,HOTEL MARRAKECH RACINE,612,Marrakesh
-52,Be Live Collection Marrakech Adults Only, Marrakesch,2015,Marrakesh
+52,Be Live Collection Marrakech Adults Only Marrakesch,2015,Marrakesh
 53,Hôtel Du Golf Rotana Palmeraie,1530,Marrakesh
 54,Opera Plaza Hotel,918,Marrakesh
 55,Hotel Relax Marrakech,598,Marrakesh
@@ -59,7 +59,7 @@ hotel_id,name,price,city
 58,Golden Tulipe,523,Marrakesh
 59,Hotel Agdal,None,Marrakesh
 60,Marrakech Ryads Parc Spa,983,Marrakesh
-61,El Fenn Hotel, Restaurant and Rooftop Bar,3660,Marrakesh
+61,El Fenn Hotel Restaurant and Rooftop Bar,3660,Marrakesh
 62,Hôtel Lawrence D'arabie,488,Marrakesh
 63,Hôtel Oudaya & Spa,373,Marrakesh
 64,Mogador Opera Marrakech - Hotel & Spa,1313,Marrakesh
@@ -120,7 +120,7 @@ hotel_id,name,price,city
 119,ROSE GARDEN RESORT روز قاردن,1440,Marrakesh
 120,La Sultana,3908,Marrakesh
 121,Riad Africa,872,Marrakesh
-122,Mandarin Oriental, Marrakech,None,Marrakesh
+122,Mandarin Oriental Marrakech,None,Marrakesh
 123,Tempoo Hôtel Marrakech,666,Marrakesh
 124,Lotus Privilège,None,Marrakesh
 125,Riad Qodwa,345,Marrakesh
@@ -225,7 +225,7 @@ hotel_id,name,price,city
 224,Mandarin Palace,1181,Tangier
 225,Hôtel Étoile Du Nord,472,Tangier
 226,Appart Hotel Alia,844,Tangier
-227,Dar El Kasbah, Eastern telegraph Company,None,Tangier
+227,Dar El Kasbah Eastern telegraph Company,None,Tangier
 228,Hôtel Maram,297,Tangier
 229,Appart-Hôtel Flamant Rose,847,Tangier
 230,Dar Nour,None,Tangier

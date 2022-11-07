@@ -14,7 +14,7 @@ def write_cleaned_ratings(c_ratings_f, hotel_link, hotel_id, sep):
             if line.split(sep)[0] == hotel_link:
                 
                 # write the cleaned rating to the new file
-                new_line = str(hotel_id) + sep + line.split(sep)[1] + line.split(sep)[2]
+                new_line = str(hotel_id) + sep + line.split(sep)[1] + sep + line.split(sep)[2]
                 c_ratings_f.write(new_line)
 
 

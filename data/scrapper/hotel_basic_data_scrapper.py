@@ -57,7 +57,7 @@ def get_hotels_info(hotels_divs):
         # create a hotel dict
         hotel = {
                 'link' : hotel_link,
-                'name' : hotel_name,
+                'name' : hotel_name.replace(',', ''),
                 'price' : price,
                 'images' : images
                 }
@@ -78,10 +78,10 @@ def main():
             'Tangier' : './data/html_source/tangier.html'
             }
 
-    with open("./data/csv_data/hotels.csv", 'a') as hotels_file:
+    with open("./data/csv_data/hotels.csv", 'w') as hotels_file:
         hotels_file.write('link,name,price,city\n')
 
-    with open('./data/csv_data/images.csv', 'a') as images_file:
+    with open('./data/csv_data/images.csv', 'w') as images_file:
         images_file.write('hotel_link,image_link\n')
 
     # iterate through the files
