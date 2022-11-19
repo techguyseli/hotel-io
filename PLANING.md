@@ -7,24 +7,26 @@ Start Date | End Date | Total
 ## Micro View
 **Note :** A task group is a group of tasks that should be started asynchronously (meaning in the same time), unless the start date indicates otherwise.<br> 
 For example all tasks in the task group 1 should start at the same time, with the exception of the second task that should start after the first task is finished, because the first task is a dependency for the second task.
-Task Group | Task ID | Element | Description | Start Date | End Date | N° Of Days | Status
----|---|---|---|---|---|---|---
-**group-1** | **task-1** | Global specifications | Project description, functional needs, non functional needs and management rules | 31/10/2022 | 02/11/2022 | 3 | `Done` 
-**group-1** | **task-2** | Conception | Use case and class diagrams | 04/11/2022 | 06/11/2022 | 3 | `Done`
-**group-1** | **task-3** | Data Collection | Gathering, cleaning and formatting data about hotels and their comments | 31/10/2022 | 06/11/2022 | 7 | `Done`
-**group-2** | **task-4** | Learning asp.net | learn and experiment as much as possible with asp.net | 08/11/2022 | 14/11/2022 | 7 | `Ongoing`
-**group-2** | **task-5** | Database creation | create the database, with the business tables and the machine learning data table | 08/11/2022 | 12/11/2022 | 5 | `Ongoing`
-**group-2** | **task-6** | Project creation | create the project and link it to the database | 13/11/2022 | 14/11/2022 | 2 | `not started`
+Task Group | Task ID | Element | Start Date | End Date | N° Of Days
+---|---|---|---|---|---
+**1** | **1** | Global specifications | 31/10/2022 | 02/11/2022 | 3 
+**1** | **2** | Conception | 04/11/2022 | 06/11/2022 | 3
+**1** | **3** | Data Collection | 31/10/2022 | 06/11/2022 | 7
+**2** | **4** | Learning asp.net | 08/11/2022 | 14/11/2022 | 7
+**2** | **5** | Database creation | 08/11/2022 | 12/11/2022 | 5
+**2** | **6** | Project creation | 13/11/2022 | 14/11/2022 | 2
+**-** | **7** | Authentification implementation | 21/11/2022 | 23/11/2022 | 3
+**-** | **8** | Hotels listing page | 24/11/2022 | 26/11/2022 | 3
+**-** | **9** | Hotel details page | 27/11/2022 | 03/12/2022 | 7
+**-** | **10** | Account creation page | 04/12/2022 | 06/12/2022 | 3
+**-** | **11** | Account info/modification/deletion page | 07/12/2022 | 13/12/2022 | 7
+**-** | **12** | Hotel reservation page | 14/12/2022 | 18/12/2022 | 5
+**-** | **13** | Client reservations page | 19/12/2022 | 23/12/2022 | 5
+**-** | **14** | Manager reservations page | 24/12/2022 | 30/12/2022 | 7
+**-** | **15** | Admin Accounts' modification | 31/12/2022 | 06/01/2023 | 7
+**-** | **16** | Admin hotels crud | 07/01/2023 | 11/01/2023 | 5
+**-** | **17** | Admin Reservations crud | 12/01/2023 | 16/01/2023 | 5
+**-** | **18** | Video | 16/01/2023 | 16/01/2023 | 1
+**-** | **19** | Presentation preparation | 17/01/2023 | 17/01/2023 | 1
 
-## Current Task Group Details
-Task ID : **task-4**
-  * [08/11/2022 - 14/11/2022] :: Learn and experiment as much as possible with asp.net and sql server.
----
-Task ID : **task-5**
-  * Important tip : 
-    * Communicate a lot with the team, because this task needs carefull thinking and contribution.
-    * Meetings are done everyday at 08:30 p.m.
-
-  * Task work :
-    * [ Mehdi | 08/11/2022 - 10/11/2022] :: create the database and business and machine learning data tables in sql server, then push the sql script file for the database creation in */hotelio* in the *development* branch.
-    * [ Mohammad | 11/11/2022 - 12/11/2022] :: create a c# commandline project in */hotelio* for filling the tables in the database with the data in the csv files, then push it to the *development* branch.
+Report and presentation should be done by 17/01/2023.
