@@ -1,0 +1,77 @@
+@startuml Conception_Hotels
+class User{
+    Int id
+    String email
+    String Password
+    String nom
+    String prenom
+    String adresse
+    String numTel
+}
+
+class Admin{
+}
+
+class Clients{
+}
+
+class Gérants{
+}
+
+class Villes{
+    Int idVille
+    String ville
+}
+
+class Hotels{
+    Int idHotel
+    String nomHotel
+    Int nbrEtoiles
+    String RIB
+}
+
+class Options{
+    Int idOption
+    String HotelOption
+}
+
+class HotelsOptions{
+}
+
+class Chambres{
+    Int chambreId
+    String typeChambre
+    Float prix
+    Int nbrCouchage
+    Boolean litDePlus
+    int nbrChambres
+}
+
+class Commentaires{
+    String commentaireId
+    String Commentaire
+}
+
+class Reservations{
+    Int idReservation
+    date datteArrivee
+    date datteDepart
+    String reservationStatut
+}
+
+
+User <|-- Admin
+User <|-- Clients
+User <|-- Gérants
+
+Hotels "*" -- "1" Villes : "Se Situer"
+Hotels "1" *-- "*" Chambres : "Se comopser"
+Hotels "1" -- "1" Gérants : "Gérer"
+
+(Hotels, Options) .. HotelsOptions
+(Hotels, Clients) .. Reservations
+(Hotels, Clients) .. Commentaires
+
+
+
+@enduml
