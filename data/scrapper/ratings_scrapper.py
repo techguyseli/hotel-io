@@ -39,14 +39,18 @@ def get_hotel_ratings(hotel_num, hotel_link):
         if translation_match is not None:
             comment = translation_match.group().replace('(Translated by Google) ', '').replace('(Original)', '')
 
-        # get the rating
+        # get the rating and adjust them to be out of 5
+        out_of = float(div.select('div.GDWaad')[0].get_text().split('/')[1])
         rating = float(div.select('div.GDWaad')[0].get_text().split('/')[0])
+        if(out_of != 5):
+            multiplier = 5/out_of
+            rating = rating * multiplier
 
         # create rating classes for the classification algorithm
         rating_class = None
         if rating <= 2:
             rating_class = '-1'
-        elif rating == 3:
+        elif rating <= 3.5:
             rating_class = '0'
         else:
             rating_class = '+1'
