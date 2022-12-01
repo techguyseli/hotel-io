@@ -2,85 +2,87 @@ CREATE DATABASE hotelio;
 
 USE  hotelio;
 
-CREATE TABLE Users (
-    idUser int PRIMARY KEY IDENTITY(1,1),
+CREATE TABLE users (
+    user_id int PRIMARY KEY IDENTITY(1,1),
     email VARCHAR(20) NOT NULL UNIQUE,
-    mdp VARCHAR(200) NOT NULL,
-    nom VARCHAR(15) NOT NULL,
-    prenom VARCHAR(30) NOT NULL,
-    adresse VARCHAR(50) NOT NULL,
-    numTel VARCHAR(15) NOT NULL UNIQUE,
-    userRole VARCHAR(15) NOT NULL
+    password VARCHAR(200) NOT NULL,
+    first_name VARCHAR(15) NOT NULL,
+    last_name VARCHAR(30) NOT NULL,
+    adress VARCHAR(50) NOT NULL,
+    phone VARCHAR(15) NOT NULL UNIQUE,
+    role VARCHAR(15) NOT NULL
 );
 
-CREATE TABLE Villes (
-    idVille int PRIMARY KEY IDENTITY(1,1),
-    nomVille VARCHAR(25) NOT NULL UNIQUE   
+CREATE TABLE cities (
+    city_id int PRIMARY KEY IDENTITY(1,1),
+    city_name VARCHAR(25) NOT NULL UNIQUE   
 );
 
-CREATE TABLE Hotels (
-    idHotel int PRIMARY KEY IDENTITY(1,1),
-    nom VARCHAR(25) NOT NULL UNIQUE,
-    nbrEtoiles int NOT NULL,
+CREATE TABLE hotels (
+    hotel_id int PRIMARY KEY IDENTITY(1,1),
+    hotel_name VARCHAR(25) NOT NULL UNIQUE,
+    stars int NOT NULL,
     rib VARCHAR(50) NOT NULL,
-    idVille int foreign key references Villes(idVille) ON DELETE SET NULL
+    city_id int foreign key references cities(city_id) ON DELETE SET NULL
 );
 
-CREATE TABLE Options (
-    idOption int PRIMARY KEY IDENTITY(1,1),
-    HotelOption VARCHAR(25) NOT NULL UNIQUE,
+CREATE TABLE options (
+    option_id int PRIMARY KEY IDENTITY(1,1),
+    hotel_option VARCHAR(25) NOT NULL UNIQUE,
 );
 
-CREATE TABLE HotelOptions (
-    idOption int foreign key references Options(idOption) ON DELETE CASCADE,
-    idHotel int foreign key references Hotels(idHotel) ON DELETE CASCADE,
-    PRIMARY KEY (idOption, idHotel)
+CREATE TABLE hotels_options (
+    option_id int foreign key references options(option_id) ON DELETE CASCADE,
+    hotel_id int foreign key references hotels(hotel_id) ON DELETE CASCADE,
+    PRIMARY KEY (option_id, hotel_id)
 );
 
-CREATE TABLE Chambres (
-    idChambre int PRIMARY KEY IDENTITY(1,1),
-    idHotel int foreign key references Hotels(idHotel) ON DELETE CASCADE,
-    typeChambre VARCHAR(20) NOT NULL,
-    prix float NOT NULL,
-    nbrCouchages int NOT NULL,
-    litDePlus bool NOT NULL,
-    nbrChambres int NOT NULL,
-    UNIQUE (idHotel, typeChambre) 
+CREATE TABLE rooms (
+    room_id int PRIMARY KEY IDENTITY(1,1),
+    hotel_id int foreign key references hotels(hotel_id) ON DELETE CASCADE,
+    room_type VARCHAR(20) NOT NULL,
+    price float NOT NULL,
+    sheet_count int NOT NULL,
+    extra_bed bit NOT NULL,
+    rooms_count int NOT NULL,
+    UNIQUE (hotel_id, room_type) 
 );
 
-CREATE TABLE Commentaires (
-    idCommentaire int PRIMARY KEY IDENTITY(1,1),
-    Commentaire VARCHAR(500) NOT NULL,
-    idHotel int foreign key references Hotels(idHotel) ON DELETE CASCADE,
-    idUser int foreign key references Users(idUser) ON DELETE SET NULL
+CREATE TABLE comments (
+    comment_id int PRIMARY KEY IDENTITY(1,1),
+    comment_str VARCHAR(500) NOT NULL,
+    hotel_id int foreign key references hotels(hotel_id) ON DELETE CASCADE,
+    user_id int foreign key references users(user_id) ON DELETE SET NULL
 );
 
-CREATE TABLE Reservations (
-    idReservation int PRIMARY KEY IDENTITY(1,1),
-    idUser int foreign key references Users(idUser) ON DELETE CASCADE,
-    dateArrivee Date NOT NULL,
-    dateDepart Date NOT NULL,
-    resevationStatut VARCHAR(20),
-    CHECK (resevationStatut = 'Payee' or resevationStatut ='Non payee' or resevationStatut = 'Annulee') 
+CREATE TABLE reservations (
+    reservation_id int PRIMARY KEY IDENTITY(1,1),
+    user_id int foreign key references Users(user_id) ON DELETE CASCADE,
+    arrival_date Date NOT NULL,
+    departure_date Date NOT NULL,
+    reservation_status VARCHAR(20),
+    CHECK (reservation_status = 'paid' or reservation_status ='not paid' or reservation_status = 'canceled') 
 );
 
-CREATE TABLE ChambresReservee (
-    idReservation int foreign key references Reservations(idReservation) ON DELETE CASCADE,
-    idChambre int foreign key references Chambres(idChambre) ON DELETE CASCADE,
-    nbrChambreReservee int NOT NULL,
-    PRIMARY KEY (idReservation, idChambre)
+CREATE TABLE rooms_reservation (
+    reservation_id int foreign key references reservations(reservation_id) ON DELETE CASCADE,
+    room_id int foreign key references rooms(room_id) ON DELETE CASCADE,
+    reserved_rooms_count int NOT NULL,
+    PRIMARY KEY (reservation_id, room_id)
 );
 
-CREATE TABLE Training (
+CREATE TABLE ml_training_data (
 	hotel_id int PRIMARY KEY,
-	comment VARCHAR(500) NOT NULL,
+	comment_str VARCHAR(500) NOT NULL,
 	rating int NOT NULL,
-	CHECK(rating = 1 or rating = 0 or rating = -1)
+	CHECK(rating = 1 or rating = 0 or rating = -1),
+	constraint ml_training_fk foreign key(hotel_id) references hotels(hotel_id) 
 );
 
-CREATE TABLE Test (
+CREATE TABLE ml_testing_data (
 	hotel_id int PRIMARY KEY,
-	comment VARCHAR(500) NOT NULL,
+	comment_str VARCHAR(500) NOT NULL,
 	rating int NOT NULL,
-	CHECK(rating = 1 or rating = 0 or rating = -1)
+	CHECK(rating = 1 or rating = 0 or rating = -1),
+	constraint ml_testing_fk foreign key(hotel_id) references hotels(hotel_id) 
 );
