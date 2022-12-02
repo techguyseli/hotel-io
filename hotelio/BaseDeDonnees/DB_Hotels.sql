@@ -50,7 +50,7 @@ CREATE TABLE rooms (
 
 CREATE TABLE comments (
     comment_id int PRIMARY KEY IDENTITY(1,1),
-    comment_str VARCHAR(500) NOT NULL,
+    comment_str VARCHAR(5000) NOT NULL,
     hotel_id int foreign key references hotels(hotel_id) ON DELETE CASCADE,
     user_id int foreign key references users(user_id) ON DELETE SET NULL
 );
@@ -73,7 +73,7 @@ CREATE TABLE rooms_reservation (
 
 CREATE TABLE ml_training_data (
 	hotel_id int PRIMARY KEY,
-	comment_str VARCHAR(500) NOT NULL,
+	comment_str VARCHAR(5000) NOT NULL,
 	rating int NOT NULL,
 	CHECK(rating = 1 or rating = 0 or rating = -1),
 	constraint ml_training_fk foreign key(hotel_id) references hotels(hotel_id) 
@@ -81,7 +81,7 @@ CREATE TABLE ml_training_data (
 
 CREATE TABLE ml_testing_data (
 	hotel_id int PRIMARY KEY,
-	comment_str VARCHAR(500) NOT NULL,
+	comment_str VARCHAR(5000) NOT NULL,
 	rating int NOT NULL,
 	CHECK(rating = 1 or rating = 0 or rating = -1),
 	constraint ml_testing_fk foreign key(hotel_id) references hotels(hotel_id) 

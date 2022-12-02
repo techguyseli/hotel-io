@@ -1,3 +1,6 @@
+import re
+
+
 # write the cleaned ratings for the current hotel
 def write_cleaned_ratings(c_ratings_f, hotel_link, hotel_id, sep):
 
@@ -12,9 +15,38 @@ def write_cleaned_ratings(c_ratings_f, hotel_link, hotel_id, sep):
 
             # if the current rating is of the current hotel
             if line.split(sep)[0] == hotel_link:
-                
+
+                comment = line.split(sep)[1]
+
+                # ignore emojies and unecessary
+                emoji_pattern = re.compile("["
+                    u"\U0001F600-\U0001F64F"  # emoticons
+                    u"\U0001F300-\U0001F5FF"  # symbols & pictographs
+                    u"\U0001F680-\U0001F6FF"  # transport & map symbols
+                    u"\U0001F1E0-\U0001F1FF"  # flags (iOS)
+                    u"\U00002500-\U00002BEF"  # chinese char
+                    u"\U00002702-\U000027B0"
+                    u"\U00002702-\U000027B0"
+                    u"\U000024C2-\U0001F251"
+                    u"\U0001f926-\U0001f937"
+                    u"\U00010000-\U0010ffff"
+                    u"\u2640-\u2642" 
+                    u"\u2600-\u2B55"
+                    u"\u200d"
+                    u"\u23cf"
+                    u"\u23e9"
+                    u"\u231a"
+                    u"\ufe0f"  # dingbats
+                    u"\u3030"
+                      "]+", flags=re.UNICODE)
+                comment = emoji_pattern.sub(r'', comment)
+
+                # ignore the one character comments
+                if len(comment) < 2:
+                    continue
+
                 # write the cleaned rating to the new file
-                new_line = str(hotel_id) + sep + line.split(sep)[1] + sep + line.split(sep)[2]
+                new_line = str(hotel_id) + sep + comment + sep + line.split(sep)[2]
                 c_ratings_f.write(new_line)
 
 
