@@ -1,0 +1,307 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="hotelioModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="cities">
+    <Key>
+      <PropertyRef Name="city_id" />
+    </Key>
+    <Property Name="city_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="city_name" Type="varchar" MaxLength="25" Nullable="false" />
+  </EntityType>
+  <EntityType Name="comments">
+    <Key>
+      <PropertyRef Name="comment_id" />
+    </Key>
+    <Property Name="comment_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="comment_str" Type="varchar" MaxLength="5000" Nullable="false" />
+    <Property Name="hotel_id" Type="int" />
+    <Property Name="user_id" Type="int" />
+  </EntityType>
+  <EntityType Name="hotels">
+    <Key>
+      <PropertyRef Name="hotel_id" />
+    </Key>
+    <Property Name="hotel_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="hotel_name" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="stars" Type="int" Nullable="false" />
+    <Property Name="rib" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="city_id" Type="int" />
+  </EntityType>
+  <EntityType Name="hotels_options">
+    <Key>
+      <PropertyRef Name="option_id" />
+      <PropertyRef Name="hotel_id" />
+    </Key>
+    <Property Name="option_id" Type="int" Nullable="false" />
+    <Property Name="hotel_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ml_testing_data">
+    <Key>
+      <PropertyRef Name="hotel_id" />
+    </Key>
+    <Property Name="hotel_id" Type="int" Nullable="false" />
+    <Property Name="comment_str" Type="varchar" MaxLength="5000" Nullable="false" />
+    <Property Name="rating" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ml_training_data">
+    <Key>
+      <PropertyRef Name="hotel_id" />
+    </Key>
+    <Property Name="hotel_id" Type="int" Nullable="false" />
+    <Property Name="comment_str" Type="varchar" MaxLength="5000" Nullable="false" />
+    <Property Name="rating" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="options">
+    <Key>
+      <PropertyRef Name="option_id" />
+    </Key>
+    <Property Name="option_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="hotel_option" Type="varchar" MaxLength="25" Nullable="false" />
+  </EntityType>
+  <EntityType Name="reservations">
+    <Key>
+      <PropertyRef Name="reservation_id" />
+    </Key>
+    <Property Name="reservation_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="user_id" Type="int" />
+    <Property Name="arrival_date" Type="date" Nullable="false" />
+    <Property Name="departure_date" Type="date" Nullable="false" />
+    <Property Name="reservation_status" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="rooms">
+    <Key>
+      <PropertyRef Name="room_id" />
+    </Key>
+    <Property Name="room_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="hotel_id" Type="int" />
+    <Property Name="room_type" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="price" Type="float" Nullable="false" />
+    <Property Name="sheet_count" Type="int" Nullable="false" />
+    <Property Name="extra_bed" Type="bit" Nullable="false" />
+    <Property Name="rooms_count" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="rooms_reservation">
+    <Key>
+      <PropertyRef Name="reservation_id" />
+      <PropertyRef Name="room_id" />
+    </Key>
+    <Property Name="reservation_id" Type="int" Nullable="false" />
+    <Property Name="room_id" Type="int" Nullable="false" />
+    <Property Name="reserved_rooms_count" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="users">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="password" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="first_name" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="last_name" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="adress" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="phone" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="role" Type="varchar" MaxLength="15" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__comments__hotel___4CA06362">
+    <End Role="hotels" Type="Self.hotels" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="comments" Type="Self.comments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="hotels">
+        <PropertyRef Name="hotel_id" />
+      </Principal>
+      <Dependent Role="comments">
+        <PropertyRef Name="hotel_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__comments__user_i__4D94879B">
+    <End Role="users" Type="Self.users" Multiplicity="0..1" />
+    <End Role="comments" Type="Self.comments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="comments">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__hotels__city_id__3F466844">
+    <End Role="cities" Type="Self.cities" Multiplicity="0..1" />
+    <End Role="hotels" Type="Self.hotels" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cities">
+        <PropertyRef Name="city_id" />
+      </Principal>
+      <Dependent Role="hotels">
+        <PropertyRef Name="city_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__hotels_op__hotel__45F365D3">
+    <End Role="hotels" Type="Self.hotels" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="hotels_options" Type="Self.hotels_options" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="hotels">
+        <PropertyRef Name="hotel_id" />
+      </Principal>
+      <Dependent Role="hotels_options">
+        <PropertyRef Name="hotel_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__hotels_op__optio__44FF419A">
+    <End Role="options" Type="Self.options" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="hotels_options" Type="Self.hotels_options" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="options">
+        <PropertyRef Name="option_id" />
+      </Principal>
+      <Dependent Role="hotels_options">
+        <PropertyRef Name="option_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__reservati__user___5070F446">
+    <End Role="users" Type="Self.users" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="reservations" Type="Self.reservations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="reservations">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__rooms__hotel_id__49C3F6B7">
+    <End Role="hotels" Type="Self.hotels" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="rooms" Type="Self.rooms" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="hotels">
+        <PropertyRef Name="hotel_id" />
+      </Principal>
+      <Dependent Role="rooms">
+        <PropertyRef Name="hotel_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__rooms_res__reser__5441852A">
+    <End Role="reservations" Type="Self.reservations" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="rooms_reservation" Type="Self.rooms_reservation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="reservations">
+        <PropertyRef Name="reservation_id" />
+      </Principal>
+      <Dependent Role="rooms_reservation">
+        <PropertyRef Name="reservation_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__rooms_res__room___5535A963">
+    <End Role="rooms" Type="Self.rooms" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="rooms_reservation" Type="Self.rooms_reservation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="rooms">
+        <PropertyRef Name="room_id" />
+      </Principal>
+      <Dependent Role="rooms_reservation">
+        <PropertyRef Name="room_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ml_testing_fk">
+    <End Role="hotels" Type="Self.hotels" Multiplicity="1" />
+    <End Role="ml_testing_data" Type="Self.ml_testing_data" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="hotels">
+        <PropertyRef Name="hotel_id" />
+      </Principal>
+      <Dependent Role="ml_testing_data">
+        <PropertyRef Name="hotel_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ml_training_fk">
+    <End Role="hotels" Type="Self.hotels" Multiplicity="1" />
+    <End Role="ml_training_data" Type="Self.ml_training_data" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="hotels">
+        <PropertyRef Name="hotel_id" />
+      </Principal>
+      <Dependent Role="ml_training_data">
+        <PropertyRef Name="hotel_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="hotelioModelStoreContainer">
+    <EntitySet Name="cities" EntityType="Self.cities" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="comments" EntityType="Self.comments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="hotels" EntityType="Self.hotels" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="hotels_options" EntityType="Self.hotels_options" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ml_testing_data" EntityType="Self.ml_testing_data" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ml_training_data" EntityType="Self.ml_training_data" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="options" EntityType="Self.options" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="reservations" EntityType="Self.reservations" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="rooms" EntityType="Self.rooms" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="rooms_reservation" EntityType="Self.rooms_reservation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__comments__hotel___4CA06362" Association="Self.FK__comments__hotel___4CA06362">
+      <End Role="hotels" EntitySet="hotels" />
+      <End Role="comments" EntitySet="comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__comments__user_i__4D94879B" Association="Self.FK__comments__user_i__4D94879B">
+      <End Role="users" EntitySet="users" />
+      <End Role="comments" EntitySet="comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__hotels__city_id__3F466844" Association="Self.FK__hotels__city_id__3F466844">
+      <End Role="cities" EntitySet="cities" />
+      <End Role="hotels" EntitySet="hotels" />
+    </AssociationSet>
+    <AssociationSet Name="FK__hotels_op__hotel__45F365D3" Association="Self.FK__hotels_op__hotel__45F365D3">
+      <End Role="hotels" EntitySet="hotels" />
+      <End Role="hotels_options" EntitySet="hotels_options" />
+    </AssociationSet>
+    <AssociationSet Name="FK__hotels_op__optio__44FF419A" Association="Self.FK__hotels_op__optio__44FF419A">
+      <End Role="options" EntitySet="options" />
+      <End Role="hotels_options" EntitySet="hotels_options" />
+    </AssociationSet>
+    <AssociationSet Name="FK__reservati__user___5070F446" Association="Self.FK__reservati__user___5070F446">
+      <End Role="users" EntitySet="users" />
+      <End Role="reservations" EntitySet="reservations" />
+    </AssociationSet>
+    <AssociationSet Name="FK__rooms__hotel_id__49C3F6B7" Association="Self.FK__rooms__hotel_id__49C3F6B7">
+      <End Role="hotels" EntitySet="hotels" />
+      <End Role="rooms" EntitySet="rooms" />
+    </AssociationSet>
+    <AssociationSet Name="FK__rooms_res__reser__5441852A" Association="Self.FK__rooms_res__reser__5441852A">
+      <End Role="reservations" EntitySet="reservations" />
+      <End Role="rooms_reservation" EntitySet="rooms_reservation" />
+    </AssociationSet>
+    <AssociationSet Name="FK__rooms_res__room___5535A963" Association="Self.FK__rooms_res__room___5535A963">
+      <End Role="rooms" EntitySet="rooms" />
+      <End Role="rooms_reservation" EntitySet="rooms_reservation" />
+    </AssociationSet>
+    <AssociationSet Name="ml_testing_fk" Association="Self.ml_testing_fk">
+      <End Role="hotels" EntitySet="hotels" />
+      <End Role="ml_testing_data" EntitySet="ml_testing_data" />
+    </AssociationSet>
+    <AssociationSet Name="ml_training_fk" Association="Self.ml_training_fk">
+      <End Role="hotels" EntitySet="hotels" />
+      <End Role="ml_training_data" EntitySet="ml_training_data" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
